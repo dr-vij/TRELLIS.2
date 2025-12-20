@@ -641,5 +641,11 @@ if __name__ == "__main__":
             dtype=torch.float32, device='cuda'
         )),
     }
-    
-    demo.launch(css=css, head=head)
+
+    import os
+    demo.launch(
+        css=css,
+        head=head,
+        server_name=os.getenv("GRADIO_SERVER_NAME", "0.0.0.0"),
+        server_port=int(os.getenv("GRADIO_SERVER_PORT", 7860))
+    )
