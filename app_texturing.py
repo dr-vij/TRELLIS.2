@@ -148,4 +148,8 @@ if __name__ == "__main__":
     pipeline = Trellis2TexturingPipeline.from_pretrained('microsoft/TRELLIS.2-4B', config_file="texturing_pipeline.json")
     pipeline.cuda()
     
-    demo.launch()
+    import os
+    demo.launch(
+        server_name=os.getenv("GRADIO_SERVER_NAME", "0.0.0.0"),
+        server_port=int(os.getenv("GRADIO_SERVER_PORT", 7860))
+    )
